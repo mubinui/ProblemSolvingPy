@@ -4,8 +4,8 @@ def nonConstructibleChange(coins):
     change = 1
     for coin in coins:
         if change >= coin:
-            change += coin
-        else:
+            change += coin 
+        else: 
             break
 
     return change
