@@ -43,9 +43,20 @@ class BST:
         self.postorder_tree_traversal(root.right)
         print(root.data, end=' ')
 
-
-
-
-
-
-
+    def level_order_traversal(self, root: Node):
+        queue = [root, None]
+        while len(queue) > 0:
+            current_node = queue.pop(0) # always pops the item from 0 index
+            if current_node is None:
+                print()
+                # for printing the level
+                if len(queue) > 0:
+                    queue.append(None)
+                else:
+                    break
+            else:
+                print(current_node.data, end=' ')
+                if current_node.left is not None:
+                    queue.append(current_node.left)
+                if current_node.right is not None:
+                    queue.append(current_node.right)
