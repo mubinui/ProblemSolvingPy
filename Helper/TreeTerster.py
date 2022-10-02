@@ -22,4 +22,5 @@ print("Tree Two")
 binary_tree = bst.BST(tree_01)
 tree_root = binary_tree.node_builder()
 print('Number of nodes in the tree ', binary_tree.count_node(tree_root))
+print('height of the tree is ',binary_tree.count_height(tree_root))
 

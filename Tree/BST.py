@@ -68,7 +68,17 @@ class BST:
         right_nodes = self.count_node(root.right)
         return left_nodes + right_nodes + 1  # adding 1 for every root
 
+    def count_height(self, root):
+        if root is None:
+            return 0
+        left_height = self.count_height(root.left)
+        right_height = self.count_height(root.right)
+        return max(left_height, right_height) + 1  # +1 is for the root
+
     # The diameter should be 6
-    def count_diameter(self, root):
-
-
+    # def count_diameter(self, root):
+    #     if root is None:
+    #         return 0
+    #
+    #     left_side = self.count_diameter(root.left)
+    #     right_side =self.count_diameter(root.right)
