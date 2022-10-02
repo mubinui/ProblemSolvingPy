@@ -46,7 +46,7 @@ class BST:
     def level_order_traversal(self, root: Node):
         queue = [root, None]
         while len(queue) > 0:
-            current_node = queue.pop(0) # always pops the item from 0 index
+            current_node = queue.pop(0)  # always pops the item from 0 index
             if current_node is None:
                 print()
                 # for printing the level
@@ -60,3 +60,15 @@ class BST:
                     queue.append(current_node.left)
                 if current_node.right is not None:
                     queue.append(current_node.right)
+
+    def count_node(self, root):
+        if root is None:
+            return 0
+        left_nodes = self.count_node(root.left)
+        right_nodes = self.count_node(root.right)
+        return left_nodes + right_nodes + 1  # adding 1 for every root
+
+    # The diameter should be 6
+    def count_diameter(self, root):
+
+
