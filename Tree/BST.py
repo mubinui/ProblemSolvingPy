@@ -5,6 +5,12 @@ class Node:
         self.right = None
 
 
+class Diameter:
+    def __init__(self, height:int, diam:int):
+        self.height = height
+        self.diam = diam
+
+
 class BST:
     def __init__(self, array):
         self.array = array
@@ -75,10 +81,31 @@ class BST:
         right_height = self.count_height(root.right)
         return max(left_height, right_height) + 1  # +1 is for the root
 
-    # The diameter should be 6
-    # def count_diameter(self, root):
-    #     if root is None:
-    #         return 0
-    #
-    #     left_side = self.count_diameter(root.left)
-    #     right_side =self.count_diameter(root.right)
+    # diameter with n-square time complexity
+    def count_diameter(self, root):
+        if root is None:
+            return 0
+
+        left_height = self.count_height(root.left)
+        right_height = self.count_height(root.right)
+
+        diameter1 = self.count_diameter(root.left)
+        diameter2 = self.count_diameter(root.right)
+        diameter3 = left_height + right_height + 1
+        return max(diameter1, diameter2, diameter3)
+
+    #  diameter with n time complexity
+    def count_diameter_optimized(self, root):
+        if root is None:
+            return Diameter(0,0)
+
+        # why?? (diam height works )
+
+        left_tree = self.count_diameter_optimized(root.left)
+        right_tree = self.count_diameter_optimized(root.right)
+        diam_height = max(left_tree.height, right_tree.height) + 1  # height
+        diam1 = left_tree.diam
+        diam2 = right_tree.diam
+        diam3 = left_tree.height + right_tree.height + 1
+        max_diam = max(diam1, diam2, diam3)
+        return Diameter(diam_height, max_diam)
